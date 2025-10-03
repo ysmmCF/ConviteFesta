@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Convite Interativo</title>
+  <!-- Fonte Amatic SC -->
+  <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background-color: #000;
+      overflow: hidden;
+      font-family: 'Amatic SC', cursive;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Vídeo sem tela cheia */
+    #meuVideo {
+      max-width: 100%;
+      height: auto;
+      cursor: pointer;
+      border-radius: 10px;
+      display: block;
+    }
+
+    /* Fade escuro */
+    #fadeOverlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: black;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 1.5s ease;
+      z-index: 999;
+    }
+
+    /* Dedinho branco */
+    #fingerIcon {
+      position: absolute;
+      bottom: 23%;
+      left: 55%;
+      transform: translateX(-50%);
+      color: white;
+      font-size: 4rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s ease;
+    }
+
+    /* Frase */
+    #overlayText {
+      position: absolute;
+      bottom: 3%;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #ffffff;
+      font-size: 1.5rem;
+      text-align: center;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+
+  <video id="meuVideo" autoplay muted playsinline>
+    <source src="https://res.cloudinary.com/dulxarxxq/video/upload/v1759455397/lv_0_20251002201215_ordyrv.mp4" type="video/mp4">
+    Seu navegador não suporta vídeos HTML5 😢
+  </video>
+
+  <i id="fingerIcon" class="fas fa-hand-point-up"></i>
+  <div id="overlayText">Clique para abrir</div>
+  <div id="fadeOverlay"></div>
+
+  <script>
+    const video = document.getElementById('meuVideo');
+    const fadeOverlay = document.getElementById('fadeOverlay');
+    const finger = document.getElementById('fingerIcon');
+
+    video.addEventListener('click', () => {
+      video.currentTime = 47;
+      video.play();
+    });
+
+    video.addEventListener('ended', () => {
+      fadeOverlay.style.opacity = 1;
+      setTimeout(() => {
+        window.location.href = "https://sites.google.com/view/15dudab/in%C3%ADcio";
+      }, 1500);
+    });
+
+    // Dedinho aparecendo de 8 em 8 segundos, visível por 4
+    setInterval(() => {
+      finger.style.opacity = 0.7;
+      setTimeout(() => {
+        finger.style.opacity = 0;
+      }, 4000);
+    }, 8000);
+  </script>
+
+</body>
+</html>
