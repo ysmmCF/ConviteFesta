@@ -7,28 +7,109 @@
 <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap" rel="stylesheet">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  html, body { height: 100%; font-family: 'Amatic SC', cursive; background: #6a0dad; }
-  .container {
-    display: flex; flex-direction: column; justify-content: center; align-items: center;
-    height: 100%; padding: 20px;
-    background: linear-gradient(to bottom, #6a0dad, #fff); text-align: center;
+
+  html, body {
+    height: 100%;
+    font-family: 'Amatic SC', cursive;
+    background: linear-gradient(to bottom, #6a0dad, #a66cd8); /* degradê roxo */
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
-  h2 { font-size: 3em; color: #fff; margin-bottom: 30px; text-shadow: 1px 1px #00000033; }
-  label { font-size: 2em; color: #fff; margin-top: 20px; display: block; text-align: center; }
-  input[type="text"] { width: 90%; padding: 15px; font-size: 1.8em; margin-top: 10px; border-radius: 10px; border: none; }
-  .radios label { display: block; margin-top: 20px; font-size: 2em; cursor: pointer; padding: 10px; border-radius: 10px; background-color: #fff176; color: #6a0dad; transition: transform 0.2s; }
-  .radios label:hover { transform: scale(1.05); }
+
+  .container {
+    background: #fff;
+    width: 90%;
+    max-width: 500px;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    text-align: center;
+  }
+
+  h2 {
+    font-size: 3em;
+    color: #6a0dad;
+    margin-bottom: 25px;
+    text-shadow: 1px 1px #00000022;
+  }
+
+  label {
+    font-size: 1.8em;
+    color: #6a0dad;
+    display: block;
+    margin-top: 15px;
+  }
+
+  input[type="text"] {
+    width: 95%;
+    padding: 12px;
+    font-size: 1.5em;
+    margin-top: 10px;
+    border-radius: 12px;
+    border: 1px solid #ccc;
+  }
+
+  .radios {
+    margin-top: 20px;
+  }
+
+  .radios label {
+    display: block;
+    font-size: 1.8em;
+    background-color: #fff176; /* amarelo pastel */
+    color: #6a0dad;
+    padding: 15px;
+    border-radius: 12px;
+    margin: 10px 0;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .radios label:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+  }
+
   .radios input { display: none; }
-  .radios input:checked + span { border: 3px solid #4b006f; border-radius: 10px; padding: 10px; }
-  button { margin-top: 40px; padding: 15px 0; font-size: 2em; width: 90%; border: none; border-radius: 15px; background-color: #fff176; color: #6a0dad; cursor: pointer; transition: transform 0.2s; }
-  button:hover { transform: scale(1.05); }
-  #msg { margin-top: 20px; font-size: 1.8em; color: #4b006f; } /* mensagem em roxo escuro */
+
+  .radios input:checked + span {
+    border: 3px solid #4b006f;
+    border-radius: 12px;
+    padding: 15px;
+  }
+
+  button {
+    margin-top: 30px;
+    padding: 15px 0;
+    font-size: 2em;
+    width: 100%;
+    border: none;
+    border-radius: 20px;
+    background-color: #fff176;
+    color: #6a0dad;
+    cursor: pointer;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  button:active {
+    transform: scale(0.97);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  }
+
+  #msg {
+    margin-top: 20px;
+    font-size: 1.8em;
+    color: #4b006f; /* roxo escuro */
+  }
+
   @media (max-width: 500px) {
     h2 { font-size: 2.5em; }
-    label { font-size: 1.8em; }
-    input[type="text"] { font-size: 1.5em; }
-    .radios label { font-size: 1.5em; }
-    button { font-size: 1.8em; }
+    label, .radios label { font-size: 1.5em; }
+    input[type="text"] { font-size: 1.3em; }
+    button { font-size: 1.6em; }
   }
 </style>
 </head>
@@ -55,8 +136,8 @@
 function formSubmitted() {
   const form = document.getElementById('form');
   if(form.dataset.submitted === "true") {
-    document.getElementById('msg').innerText = "Sua resposta foi enviada com sucesso, obrigado pela ajuda!";
-    setTimeout(() => location.reload(), 1000);
+    document.getElementById('msg').innerText = "Sua resposta foi enviada com sucesso!";
+    setTimeout(() => location.reload(), 1200);
   }
 }
 
