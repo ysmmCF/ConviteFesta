@@ -16,13 +16,13 @@
   h2 { font-size: 3em; color: #fff; margin-bottom: 30px; text-shadow: 1px 1px #00000033; }
   label { font-size: 2em; color: #fff; margin-top: 20px; display: block; text-align: center; }
   input[type="text"] { width: 90%; padding: 15px; font-size: 1.8em; margin-top: 10px; border-radius: 10px; border: none; }
-  .radios label { display: block; margin-top: 20px; font-size: 2em; cursor: pointer; padding: 10px; border-radius: 10px; background-color: #ffeb3b; color: #6a0dad; transition: transform 0.2s; }
+  .radios label { display: block; margin-top: 20px; font-size: 2em; cursor: pointer; padding: 10px; border-radius: 10px; background-color: #fff176; color: #6a0dad; transition: transform 0.2s; }
   .radios label:hover { transform: scale(1.05); }
   .radios input { display: none; }
-  .radios input:checked + span { border: 3px solid #fff; border-radius: 10px; padding: 10px; }
-  button { margin-top: 40px; padding: 15px 0; font-size: 2em; width: 90%; border: none; border-radius: 15px; background-color: #ffeb3b; color: #6a0dad; cursor: pointer; transition: transform 0.2s; }
+  .radios input:checked + span { border: 3px solid #4b006f; border-radius: 10px; padding: 10px; }
+  button { margin-top: 40px; padding: 15px 0; font-size: 2em; width: 90%; border: none; border-radius: 15px; background-color: #fff176; color: #6a0dad; cursor: pointer; transition: transform 0.2s; }
   button:hover { transform: scale(1.05); }
-  #msg { margin-top: 20px; font-size: 1.8em; color: #fff; }
+  #msg { margin-top: 20px; font-size: 1.8em; color: #4b006f; } /* mensagem em roxo escuro */
   @media (max-width: 500px) {
     h2 { font-size: 2.5em; }
     label { font-size: 1.8em; }
@@ -55,7 +55,7 @@
 function formSubmitted() {
   const form = document.getElementById('form');
   if(form.dataset.submitted === "true") {
-    document.getElementById('msg').innerText = "Sua resposta foi enviada com sucesso!";
+    document.getElementById('msg').innerText = "Sua resposta foi enviada com sucesso, obrigado pela ajuda!";
     setTimeout(() => location.reload(), 1000);
   }
 }
