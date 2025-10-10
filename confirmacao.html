@@ -7,134 +7,108 @@
 <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap" rel="stylesheet">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  html, body {
-    height: 100%;
-    font-family: 'Amatic SC', cursive;
-    background: linear-gradient(to bottom, #6a0dad, #a66cd8);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .container {
-    background: #fff;
-    width: 95%;
-    max-width: 600px;
-    border-radius: 25px;
-    padding: 40px 30px;
-    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
-    text-align: center;
-    position: relative;
-  }
-  h2 {
-    font-size: 4em;
-    color: #6a0dad;
-    margin-bottom: 35px;
-    text-shadow: 2px 2px #00000033;
-  }
-  label {
-    font-size: 2.5em;
-    color: #6a0dad;
-    display: block;
-    margin-top: 25px;
-  }
-  input[type="text"] {
-    width: 95%;
-    padding: 20px;
-    font-size: 2em;
-    margin-top: 15px;
-    border-radius: 15px;
-    border: 1px solid #ccc;
-  }
-  .radios { margin-top: 30px; }
-  .radios label {
-    display: block;
-    font-size: 2.2em;
-    background-color: #fff176;
-    color: #6a0dad;
-    padding: 20px;
-    border-radius: 15px;
-    margin: 15px 0;
-    cursor: pointer;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.3);
-    transition: transform 0.2s, box-shadow 0.2s;
-  }
-  .radios label:hover { transform: scale(1.05); box-shadow: 0 8px 18px rgba(0,0,0,0.35); }
+  html, body { height: 100%; font-family: 'Amatic SC', cursive; background: #f3e8ff; display: flex; justify-content: center; align-items: center; padding: 20px; }
+  .container { background: #fff; width: 100%; max-width: 500px; border-radius: 25px; padding: 40px 30px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); text-align: center; position: relative; }
+  h2 { font-size: 3.5em; color: #6a0dad; margin-bottom: 30px; }
+  label { font-size: 2em; color: #6a0dad; display: block; margin: 20px 0 10px; }
+  input[type="text"] { width: 95%; padding: 15px; font-size: 1.8em; border-radius: 15px; border: 1px solid #ccc; }
+  .radios { margin-top: 25px; }
+  .radios label { display: block; font-size: 1.8em; background-color: #fff176; color: #6a0dad; padding: 15px; border-radius: 15px; margin: 10px 0; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.2); transition: transform 0.2s, box-shadow 0.2s; }
+  .radios label:hover { transform: scale(1.05); box-shadow: 0 6px 18px rgba(0,0,0,0.25); }
   .radios input { display: none; }
-  .radios input:checked + span { border: 4px solid #4b006f; border-radius: 15px; padding: 20px; }
-  button {
-    margin-top: 40px;
-    padding: 20px 0;
-    font-size: 2.5em;
-    width: 100%;
-    border: none;
-    border-radius: 25px;
-    background-color: #fff176;
-    color: #6a0dad;
-    cursor: pointer;
-    box-shadow: 0 8px 18px rgba(0,0,0,0.35);
-    transition: transform 0.2s, box-shadow 0.2s;
-  }
-  button:active { transform: scale(0.97); box-shadow: 0 6px 12px rgba(0,0,0,0.3); }
-
-  /* Mensagem central de sucesso */
-  #msg {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 3em;
-    color: #fff;
-    background-color: #4b006f;
-    padding: 30px 50px;
-    border-radius: 25px;
-    text-align: center;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-    z-index: 9999;
+  .radios input:checked + span { border: 3px solid #4b006f; border-radius: 15px; padding: 15px; }
+  button { margin-top: 30px; padding: 15px 0; font-size: 2em; width: 100%; border: none; border-radius: 25px; background-color: #fff176; color: #6a0dad; cursor: pointer; box-shadow: 0 6px 18px rgba(0,0,0,0.25); transition: transform 0.2s, box-shadow 0.2s; position: relative; overflow: hidden; }
+  button:active { transform: scale(0.97); box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+  #msg { margin-top: 25px; font-size: 1.8em; color: #4b006f; font-weight: bold; }
+  
+  /* Brilhos */
+  .spark { 
+    position: absolute; 
+    width: 6px; 
+    height: 6px; 
+    background: #c188ff; 
+    border-radius: 50%; 
+    animation: sparkle 0.8s forwards; 
+    pointer-events: none; 
+    opacity: 0.9; 
   }
 
-  @media (max-width: 500px) {
-    h2 { font-size: 3.2em; }
-    label { font-size: 2em; }
-    input[type="text"] { font-size: 1.8em; }
-    .radios label { font-size: 1.8em; padding: 18px; }
-    button { font-size: 2em; padding: 18px 0; }
-    #msg { font-size: 2em; padding: 20px 30px; }
+  @keyframes sparkle {
+    0% { opacity: 1; transform: translate(0,0) scale(1); }
+    100% { opacity: 0; transform: translate(var(--x), var(--y)) scale(0.3); }
+  }
+
+  @media (max-width: 400px) {
+    h2 { font-size: 2.8em; }
+    label { font-size: 1.6em; }
+    input[type="text"] { font-size: 1.5em; }
+    .radios label { font-size: 1.5em; padding: 12px; }
+    button { font-size: 1.8em; padding: 12px 0; }
+    #msg { font-size: 1.6em; }
   }
 </style>
 </head>
 <body>
 <div class="container">
   <h2>Confirmação de Presença</h2>
-  <form id="form" action="https://script.google.com/macros/s/AKfycbyMEhEoR4cKL4rKcKJBC_TtQdSkP9M3uCVJifz_ocdhn12TfQWUoXdo4oEH_B9693O-/exec" method="POST" target="hidden_iframe">
+  <form id="form">
     <label>Seu nome:</label>
     <input type="text" name="nome" placeholder="Digite seu nome" required>
+
     <div class="radios">
       <label><input type="radio" name="presenca" value="Sim, estarei lá!" required><span>Sim, estarei lá!</span></label>
-      <label><input type="radio" name="presenca" value="Não poderei participar" required><span>Não poderei participar.</span></label>
+      <label><input type="radio" name="presenca" value="Não poderei participar" required><span>Não poderei participar</span></label>
     </div>
-    <button type="submit">Enviar</button>
+
+    <button type="submit" id="submitBtn">Enviar</button>
   </form>
+  <p id="msg"></p>
 </div>
 
-<div id="msg">💜 Sua resposta foi enviada com sucesso!</div>
-
-<iframe name="hidden_iframe" style="display:none;" onload="formSubmitted()"></iframe>
-
 <script>
-function formSubmitted() {
-  const form = document.getElementById('form');
-  const msg = document.getElementById('msg');
-  if(form.dataset.submitted === "true") {
-    msg.style.display = 'block';
-    setTimeout(() => {
-      msg.style.display = 'none';
-      location.reload();
-    }, 1500);
+const form = document.getElementById('form');
+const msg = document.getElementById('msg');
+const submitBtn = document.getElementById('submitBtn');
+
+// URL do seu Web App do Google Apps Script
+const webAppUrl = "https://script.google.com/macros/s/AKfycbx3DvKzsaCp6SsYynqIjaZzqpI4reIo40fc_soDczlO0VAC3Q1rtDYlHiwtVXYMGxTN/exec";
+
+// Função para criar brilhos
+function createSparks(btn) {
+  for(let i=0;i<8;i++){
+    const spark = document.createElement('div');
+    spark.className = 'spark';
+    const x = (Math.random()-0.5)*80 + 'px';
+    const y = (Math.random()-0.5)*80 + 'px';
+    spark.style.setProperty('--x', x);
+    spark.style.setProperty('--y', y);
+    spark.style.left = Math.random()*100 + '%';
+    spark.style.top = Math.random()*100 + '%';
+    btn.appendChild(spark);
+    setTimeout(()=>spark.remove(),800);
   }
 }
-document.getElementById('form').addEventListener('submit', function(){
-  this.dataset.submitted = "true";
+
+form.addEventListener('submit', async e => {
+  e.preventDefault();
+  createSparks(submitBtn); // animação de brilhos
+
+  const data = new FormData(form);
+  const obj = {};
+  data.forEach((value, key) => obj[key] = value);
+
+  try {
+    await fetch(webAppUrl, {
+      method: "POST",
+      body: JSON.stringify(obj),
+      headers: { "Content-Type": "application/json" }
+    });
+    msg.innerText = "Sua resposta foi enviada com sucesso!";
+    form.reset();
+  } catch(err) {
+    msg.innerText = "Ocorreu um erro ao enviar. Tente novamente.";
+    msg.style.color = "red";
+  }
 });
 </script>
 </body>
