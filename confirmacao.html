@@ -6,91 +6,63 @@
 <title>Confirmação de Presença</title>
 <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap" rel="stylesheet">
 <style>
-  body {
-    font-family: 'Amatic SC', cursive;
-    background: #f7f7f7;
-    padding: 20px;
-  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100%; font-family: 'Amatic SC', cursive; background: #6a0dad; }
   .container {
-    background: #fff;
-    max-width: 400px;
-    margin: 40px auto;
-    padding: 25px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    text-align: center;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    height: 100%; padding: 20px;
+    background: linear-gradient(to bottom, #6a0dad, #fff); text-align: center;
   }
-  h2 {
-    font-size: 2.2em;
-    margin-bottom: 20px;
-  }
-  label {
-    font-size: 1.5em;
-    display: block;
-    margin-top: 15px;
-    text-align: left;
-  }
-  input[type="text"] {
-    width: 100%;
-    padding: 10px;
-    font-size: 1.4em;
-    margin-top: 8px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-  }
-  .radios label {
-    display: flex;
-    align-items: center;
-    margin-top: 10px;
-    font-size: 1.5em;
-  }
-  .radios input {
-    margin-right: 10px;
-    transform: scale(1.2);
-  }
-  button {
-    margin-top: 25px;
-    width: 100%;
-    padding: 12px;
-    font-size: 1.5em;
-    background-color: #6a0dad;
-    color: white;
-    border: none;
-    border-radius: 7px;
-    cursor: pointer;
-  }
-  button:hover {
-    background-color: #4b006f;
-  }
-  #msg {
-    margin-top: 15px;
-    font-size: 1.3em;
-    color: green;
+  h2 { font-size: 3em; color: #fff; margin-bottom: 30px; text-shadow: 1px 1px #00000033; }
+  label { font-size: 2em; color: #fff; margin-top: 20px; display: block; text-align: center; }
+  input[type="text"] { width: 90%; padding: 15px; font-size: 1.8em; margin-top: 10px; border-radius: 10px; border: none; }
+  .radios label { display: block; margin-top: 20px; font-size: 2em; cursor: pointer; padding: 10px; border-radius: 10px; background-color: #ffeb3b; color: #6a0dad; transition: transform 0.2s; }
+  .radios label:hover { transform: scale(1.05); }
+  .radios input { display: none; }
+  .radios input:checked + span { border: 3px solid #fff; border-radius: 10px; padding: 10px; }
+  button { margin-top: 40px; padding: 15px 0; font-size: 2em; width: 90%; border: none; border-radius: 15px; background-color: #ffeb3b; color: #6a0dad; cursor: pointer; transition: transform 0.2s; }
+  button:hover { transform: scale(1.05); }
+  #msg { margin-top: 20px; font-size: 1.8em; color: #fff; }
+  @media (max-width: 500px) {
+    h2 { font-size: 2.5em; }
+    label { font-size: 1.8em; }
+    input[type="text"] { font-size: 1.5em; }
+    .radios label { font-size: 1.5em; }
+    button { font-size: 1.8em; }
   }
 </style>
 </head>
 <body>
-  <div class="container">
-    <h2>Confirmação de Presença</h2>
-    <form action="https://script.google.com/macros/s/AKfycbxvbu7Z7tsplWyNLzhuQkX4rsSKU_YlRAazZvIU-cDKUFJRsFn6t752XWEkR1kwzf3s/exec" method="POST" target="hidden_iframe" onsubmit="submitted()">
-      <label>Seu nome:</label>
-      <input type="text" name="nome" placeholder="Digite seu nome" required>
+<div class="container">
+  <h2>Confirmação de Presença</h2>
+  <form id="form" action="https://script.google.com/macros/s/AKfycbxvbu7Z7tsplWyNLzhuQkX4rsSKU_YlRAazZvIU-cDKUFJRsFn6t752XWEkR1kwzf3s/exec" method="POST" target="hidden_iframe">
+    <label>Seu nome:</label>
+    <input type="text" name="nome" placeholder="Digite seu nome" required>
 
-      <div class="radios">
-        <label><input type="radio" name="presenca" value="Sim, estarei lá!" required> Sim, estarei lá!</label>
-        <label><input type="radio" name="presenca" value="Não poderei participar" required> Não poderei participar.</label>
-      </div>
+    <div class="radios">
+      <label><input type="radio" name="presenca" value="Sim, estarei lá!" required><span>Sim, estarei lá!</span></label>
+      <label><input type="radio" name="presenca" value="Não poderei participar" required><span>Não poderei participar.</span></label>
+    </div>
 
-      <button type="submit">Enviar</button>
-    </form>
-    <iframe name="hidden_iframe" style="display:none;"></iframe>
-    <p id="msg"></p>
-  </div>
+    <button type="submit">Enviar</button>
+  </form>
+
+  <iframe name="hidden_iframe" style="display:none;" onload="formSubmitted()"></iframe>
+  <p id="msg"></p>
+</div>
 
 <script>
-function submitted() {
-  document.getElementById('msg').innerText = "Sua resposta foi enviada com sucesso!";
+function formSubmitted() {
+  const form = document.getElementById('form');
+  if(form.dataset.submitted === "true") {
+    document.getElementById('msg').innerText = "Sua resposta foi enviada com sucesso!";
+    setTimeout(() => location.reload(), 1000);
+  }
 }
+
+document.getElementById('form').addEventListener('submit', function(){
+  this.dataset.submitted = "true";
+});
 </script>
 </body>
 </html>
