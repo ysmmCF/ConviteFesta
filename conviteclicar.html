@@ -2,11 +2,10 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-
 <title>Convite</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- Fonte Amatic SC -->
+<!-- Fonte -->
 <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap" rel="stylesheet">
 
 <!-- Material Icons -->
@@ -21,7 +20,6 @@
 
 body {
   background: black;
-  overflow-y: auto;
   font-family: 'Amatic SC', cursive;
 }
 
@@ -39,14 +37,51 @@ body {
 
 #conteudo img {
   width: 100%;
-  height: auto;
   display: block;
 }
 
-/* Área dos botões */
+/* ===== CONTAGEM ===== */
+#contador {
+  position: absolute;
+  top: 83%;
+  width: 100%;
+  text-align: center;
+  color: white;
+  animation: surgir 1.5s ease forwards;
+}
+
+#contador h1 {
+  font-size: 56px;
+  margin-bottom: 12px;
+}
+
+#tempo {
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+  font-size: 42px;
+}
+
+.bloco span {
+  display: block;
+  font-size: 64px;
+}
+
+@keyframes surgir {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== BOTÕES ===== */
 #botoes {
   position: absolute;
-  top: 76%;
+  top: 64%;
   left: 62%;
   transform: translateX(-50%);
   display: flex;
@@ -63,71 +98,36 @@ body {
   gap: 14px;
   text-decoration: none;
   color: white;
-  font-size: 26px;
-  letter-spacing: 1px;
-  font-family: 'Amatic SC', cursive;
+  font-size: 28px;
 }
 
-/* Bolinha azul */
 .icone {
-  width: 57px;
-  height: 57px;
+  width: 60px;
+  height: 60px;
   background: #719aff;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
 }
 
-/* Ícone branco */
-.icone .material-icons {
+.material-icons {
+  font-size: 34px;
   color: white;
-  font-size: 28px;
-  font-family: 'Material Icons';
-  font-style: normal;
-  font-weight: normal;
-  line-height: 1;
-  letter-spacing: normal;
-  text-transform: none;
-  display: inline-block;
-  white-space: nowrap;
-  word-wrap: normal;
-  direction: ltr;
-  -webkit-font-feature-settings: 'liga';
-  -webkit-font-smoothing: antialiased;
-}
-
-/* Vídeo posicionado */
-#video-container {
-  position: absolute;
-  top: 46%;
-  left: 51%;
-  transform: translateX(-50%);
-  width: 289px;
-  cursor: pointer;
-  z-index: 10;
-}
-
-#video-container video {
-  width: 100%;
-  display: block;
-  border-radius: 12px;
-  background: transparent;
 }
 
 /* ===== POP-UP ===== */
 #popup {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.5);
+  background: rgba(0,0,0,0.6);
   display: flex;
   justify-content: center;
   align-items: center;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.4s ease;
-  z-index: 20;
+  transition: 0.4s;
+  z-index: 30;
 }
 
 #popup.active {
@@ -138,25 +138,33 @@ body {
 #popup-content {
   background: #223052;
   color: white;
-  padding: 40px 45px;
-  border-radius: 25px;
+  padding: 65px 55px;
+  border-radius: 32px;
   text-align: center;
-  max-width: 450px;
-  width: 95%;
-  box-shadow: 0 6px 25px rgba(0,0,0,0.7);
-  position: relative;
-  font-size: 30px;
+  max-width: 560px;
+  width: 92%;
+  font-size: 40px;
   line-height: 1.4;
+  position: relative;
 }
 
-/* Botão de fechar */
+.confirmacao {
+  margin-top: 25px;
+  font-size: 36px;
+}
+
 #popup-close {
   position: absolute;
-  top: 10px;
+  top: 6px;
   right: 14px;
+  font-size: 72px;
   cursor: pointer;
-  font-size: 36px;
-  color: white;
+  line-height: 1;
+}
+
+/* ===== MÚSICA ===== */
+audio {
+  display: none;
 }
 </style>
 </head>
@@ -166,53 +174,44 @@ body {
 <div id="convite">
   <div id="conteudo">
 
-    <!-- Fundo -->
-    <img   
-      src="https://raw.githubusercontent.com/ysmmCF/ConviteFesta/main/C%C3%B3pia%20de%20Rhuana_20260212_034823_0000.png"  
-      alt="Convite Rhuana"
-    >
-
-    <!-- Vídeo -->
-    <div id="video-container">
-      <video id="video" preload="metadata">
-        <source src="https://raw.githubusercontent.com/ysmmCF/ConviteFesta/main/lv_0_20260212034450.mp4" type="video/mp4">
-        Seu navegador não suporta vídeo.
-      </video>
+    <!-- CONTAGEM -->
+    <div id="contador">
+      <h1>Rhuana faz 15!</h1>
+      <div id="tempo">
+        <div class="bloco"><span id="dias">0</span>Dias</div>
+        <div class="bloco"><span id="horas">0</span>Horas</div>
+        <div class="bloco"><span id="minutos">0</span>Min</div>
+        <div class="bloco"><span id="segundos">0</span>Seg</div>
+      </div>
     </div>
 
-    <!-- Botões -->
+    <!-- FUNDO -->
+    <img src="https://raw.githubusercontent.com/ysmmCF/ConviteFesta/main/Rhuana_20260212_142427_0000.png">
+
+    <!-- BOTÕES -->
     <div id="botoes">
 
       <a href="https://raw.githubusercontent.com/ysmmCF/ConviteFesta/main/sugest%C3%A3o%20de%20presente%20rhuana.jpeg" class="botao">
-        <div class="icone">
-          <span class="material-icons">card_giftcard</span>
-        </div>
+        <div class="icone"><span class="material-icons">card_giftcard</span></div>
         Sugestões de presentes
       </a>
 
       <a href="https://raw.githubusercontent.com/ysmmCF/ConviteFesta/main/paleta%20de%20cores%20rhuana.jpeg" class="botao">
-        <div class="icone">
-          <span class="material-icons">checkroom</span>
-        </div>
+        <div class="icone"><span class="material-icons">checkroom</span></div>
         Dress code
       </a>
 
       <a href="https://raw.githubusercontent.com/ysmmCF/ConviteFesta/main/C%C3%B3pia%20de%20Rhuana.png" class="botao">
-        <div class="icone">
-          <span class="material-icons">menu_book</span>
-        </div>
+        <div class="icone"><span class="material-icons">menu_book</span></div>
         Manual do convidado
       </a>
 
       <a href="https://maps.app.goo.gl/7bjk6MGksNM6erDX8" class="botao">
-        <div class="icone">
-          <span class="material-icons">place</span>
-        </div>
+        <div class="icone"><span class="material-icons">place</span></div>
         Localização
       </a>
 
     </div>
-
   </div>
 </div>
 
@@ -220,53 +219,50 @@ body {
 <div id="popup">
   <div id="popup-content">
     <div id="popup-close">&times;</div>
-    <p>O convite é interativo, se sinta à vontade para clicar nos botões e no envelope!</p>
-    <p><strong>Confirme a presença até dia 20/05!</strong></p>
+    Convite interativo,<br>
+    fique à vontade para explorar!
+    <div class="confirmacao">
+      Confirme a presença até <strong>15/05</strong>
+    </div>
   </div>
 </div>
 
-<!-- Música -->
-<audio id="music">
+<!-- MÚSICA -->
+<audio id="music" loop>
   <source src="https://raw.githubusercontent.com/ysmmCF/ConviteFesta/main/frozen%20m%C3%BAsica.mp4" type="audio/mp4">
 </audio>
 
 <script>
-const video = document.getElementById("video");
-const music = document.getElementById("music");
-
-// Mostrar primeiro frame
-video.pause();
-video.currentTime = 0;
-
-// Tocar vídeo e música ao clicar
-video.addEventListener("click", () => {
-  if (video.paused) {
-    video.play();
-    music.play();
-  }
-});
-
-// Pausa no segundo 9
-video.addEventListener("timeupdate", () => {
-  if (video.currentTime >= 9) {
-    video.pause();
-  }
-});
-
-// ===== POP-UP =====
 const popup = document.getElementById("popup");
 const close = document.getElementById("popup-close");
+const music = document.getElementById("music");
 
-// Mostrar pop-up 2s depois de abrir
+// abrir popup
 setTimeout(() => {
   popup.classList.add("active");
-}, 2000);
+}, 1200);
 
-// Fechar pop-up ao clicar no X
+// fechar popup + tocar música
 close.addEventListener("click", () => {
   popup.classList.remove("active");
+  music.play();
 });
+
+// CONTAGEM REGRESSIVA
+const dataEvento = new Date("2026-05-28T19:00:00").getTime();
+
+setInterval(() => {
+  const agora = new Date().getTime();
+  const diff = dataEvento - agora;
+
+  if (diff <= 0) return;
+
+  document.getElementById("dias").innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
+  document.getElementById("horas").innerText = Math.floor((diff / (1000 * 60 * 60)) % 24);
+  document.getElementById("minutos").innerText = Math.floor((diff / (1000 * 60)) % 60);
+  document.getElementById("segundos").innerText = Math.floor((diff / 1000) % 60);
+}, 1000);
 </script>
 
 </body>
-</html>
+        </html>
