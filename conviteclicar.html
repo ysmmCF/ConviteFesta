@@ -22,8 +22,10 @@
 body {
   background: black;
   overflow-y: auto;
+  font-family: 'Amatic SC', cursive;
 }
 
+/* ===== CONVITE ===== */
 #convite {
   width: 100%;
   display: flex;
@@ -52,18 +54,18 @@ body {
   gap: 22px;
   width: 85%;
   max-width: 340px;
+  z-index: 15; /* garante que fique acima do pop-up */
 }
 
-/* Botão */
 .botao {
   display: flex;
   align-items: center;
   gap: 14px;
   text-decoration: none;
   color: white;
-  font-family: 'Amatic SC', cursive;
   font-size: 26px;
   letter-spacing: 1px;
+  font-family: 'Amatic SC', cursive;
 }
 
 /* Bolinha azul */
@@ -75,21 +77,34 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
 }
 
 /* Ícone branco */
 .icone .material-icons {
   color: white;
   font-size: 28px;
+  font-family: 'Material Icons'; /* força o Material Icons */
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
 }
 
 /* Vídeo posicionado */
 #video-container {
   position: absolute;
-  top: 46%;      /* ajuste vertical */
+  top: 46%;
   left: 51%;
   transform: translateX(-50%);
-  width: 289px;  /* largura menor */
+  width: 289px;
   cursor: pointer;
   z-index: 10;
 }
@@ -98,8 +113,51 @@ body {
   width: 100%;
   display: block;
   border-radius: 12px;
-  background: transparent; /* sem sombra */
+  background: transparent;
 }
+
+/* ===== POP-UP ===== */
+#popup {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5); /* fundo semitransparente */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+  z-index: 20;
+}
+
+#popup.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+#popup-content {
+  background: #223052;
+  color: white;
+  padding: 35px 40px;
+  border-radius: 20px;
+  text-align: center;
+  max-width: 400px;
+  width: 95%;
+  box-shadow: 0 6px 25px rgba(0,0,0,0.7);
+  position: relative;
+  font-size: 28px;
+}
+
+/* Botão de fechar */
+#popup-close {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  cursor: pointer;
+  font-size: 34px;
+  color: white;
+}
+
 </style>
 </head>
 
@@ -109,8 +167,8 @@ body {
   <div id="conteudo">
 
     <!-- Fundo -->
-    <img 
-      src="https://raw.githubusercontent.com/ysmmCF/ConviteFesta/main/C%C3%B3pia%20de%20Rhuana_20260212_034823_0000.png"
+    <img   
+      src="https://raw.githubusercontent.com/ysmmCF/ConviteFesta/main/C%C3%B3pia%20de%20Rhuana_20260212_034823_0000.png"  
       alt="Convite Rhuana"
     >
 
@@ -158,17 +216,32 @@ body {
   </div>
 </div>
 
+<!-- POP-UP -->
+<div id="popup">
+  <div id="popup-content">
+    <div id="popup-close">&times;</div>
+    <p>O convite é interativo, se sinta à vontade para clicar nos botões e no envelope!</p>
+  </div>
+</div>
+
+<!-- Música -->
+<audio id="music">
+  <source src="https://raw.githubusercontent.com/ysmmCF/ConviteFesta/main/frozen%20m%C3%BAsica.mp4" type="audio/mp4">
+</audio>
+
 <script>
 const video = document.getElementById("video");
+const music = document.getElementById("music");
 
-// Mostra o primeiro frame antes de clicar
+// Mostrar primeiro frame
 video.pause();
 video.currentTime = 0;
 
-// Tocar somente quando clicar
+// Tocar vídeo e música ao clicar
 video.addEventListener("click", () => {
   if (video.paused) {
     video.play();
+    music.play();
   }
 });
 
@@ -177,6 +250,20 @@ video.addEventListener("timeupdate", () => {
   if (video.currentTime >= 8) {
     video.pause();
   }
+});
+
+// ===== POP-UP =====
+const popup = document.getElementById("popup");
+const close = document.getElementById("popup-close");
+
+// Mostrar pop-up 2s depois de abrir
+setTimeout(() => {
+  popup.classList.add("active");
+}, 2000);
+
+// Fechar pop-up ao clicar no X
+close.addEventListener("click", () => {
+  popup.classList.remove("active");
 });
 </script>
 
