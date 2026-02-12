@@ -54,7 +54,7 @@ body {
   gap: 22px;
   width: 85%;
   max-width: 340px;
-  z-index: 15; /* garante que fique acima do pop-up */
+  z-index: 15;
 }
 
 .botao {
@@ -84,7 +84,7 @@ body {
 .icone .material-icons {
   color: white;
   font-size: 28px;
-  font-family: 'Material Icons'; /* força o Material Icons */
+  font-family: 'Material Icons';
   font-style: normal;
   font-weight: normal;
   line-height: 1;
@@ -120,7 +120,7 @@ body {
 #popup {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.5); /* fundo semitransparente */
+  background: rgba(0,0,0,0.5);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -138,14 +138,15 @@ body {
 #popup-content {
   background: #223052;
   color: white;
-  padding: 35px 40px;
-  border-radius: 20px;
+  padding: 40px 45px;
+  border-radius: 25px;
   text-align: center;
-  max-width: 400px;
+  max-width: 450px;
   width: 95%;
   box-shadow: 0 6px 25px rgba(0,0,0,0.7);
   position: relative;
-  font-size: 28px;
+  font-size: 30px;
+  line-height: 1.4;
 }
 
 /* Botão de fechar */
@@ -154,10 +155,9 @@ body {
   top: 10px;
   right: 14px;
   cursor: pointer;
-  font-size: 34px;
+  font-size: 36px;
   color: white;
 }
-
 </style>
 </head>
 
@@ -221,6 +221,7 @@ body {
   <div id="popup-content">
     <div id="popup-close">&times;</div>
     <p>O convite é interativo, se sinta à vontade para clicar nos botões e no envelope!</p>
+    <p><strong>Confirme a presença até dia 15/05!</strong></p>
   </div>
 </div>
 
@@ -245,7 +246,7 @@ video.addEventListener("click", () => {
   }
 });
 
-// Pausa no segundo 8
+// Pausa no segundo 9
 video.addEventListener("timeupdate", () => {
   if (video.currentTime >= 9) {
     video.pause();
