@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+
+<title>Convite</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Fonte Amatic SC -->
+<link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap" rel="stylesheet">
+
+<!-- Material Icons -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: black;
+  overflow-y: auto;
+}
+
+#convite {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+#conteudo {
+  width: 100%;
+  position: relative;
+}
+
+#conteudo img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Área dos botões */
+#botoes {
+  position: absolute;
+  top: 64%;
+  left: 62%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  width: 85%;
+  max-width: 340px;
+}
+
+/* Botão */
+.botao {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+  color: white;
+  font-family: 'Amatic SC', cursive;
+  font-size: 26px;
+  letter-spacing: 1px;
+}
+
+/* Bolinha azul */
+.icone {
+  width: 50px;
+  height: 50px;
+  background: #719aff; /* azul claro */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+}
+
+/* Ícone branco */
+.icone .material-icons {
+  color: white;
+  font-size: 28px;
+}
+
+/* ===== Contagem regressiva ===== */
+#countdown {
+  position: absolute;
+  top: 80%; 
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-wrap: wrap;        /* Permite duas linhas */
+  justify-content: space-between;
+  gap: 18px;
+  width: 90%;
+  max-width: 200px;
+  text-align: center;
+  font-family: 'Amatic SC', cursive;
+}
+
+/* Título */
+#countdown h2 {
+  width: 100%;
+  color: white;
+  font-size: 49px;
+  margin-bottom: 1px;
+}
+
+/* Quadrados da contagem */
+.count-box {
+  background: #719aff;
+  color: white;
+  width: 45%;             /* Dois por linha */
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 35px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+
+/* Label dentro do quadrado */
+.count-box span {
+  font-size: 30px;
+  margin-top: 5px;
+}
+</style>
+</head>
+
+<body>
+
+<div id="convite">
+  <div id="conteudo">
+
+    <!-- Fundo -->
+    <img 
+      src="https://raw.githubusercontent.com/ysmmCF/ConviteFesta/main/Rhuana_20260211_232322_0000.png"
+      alt="Convite Rhuana"
+    >
+
+    <!-- Contagem regressiva -->
+    <div id="countdown">
+      <h2>Rhu faz 15!</h2>
+      <div class="count-box" id="days">
+        00
+        <span>Dias</span>
+      </div>
+      <div class="count-box" id="hours">
+        00
+        <span>Horas</span>
+      </div>
+      <div class="count-box" id="minutes">
+        00
+        <span>Minutos</span>
+      </div>
+      <div class="count-box" id="seconds">
+        00
+        <span>Segundos</span>
+      </div>
+    </div>
+
+    <!-- Botões -->
+    <div id="botoes">
+
+      <!-- Sugestões de presentes -->
+      <a href="https://raw.githubusercontent.com/ysmmCF/ConviteFesta/main/sugestão de presente rhuana.jpeg" class="botao">
+        <div class="icone">
+          <span class="material-icons">card_giftcard</span>
+        </div>
+        Sugestões de presentes
+      </a>
+
+      <!-- Dress code -->
+      <a href="https://raw.githubusercontent.com/ysmmCF/ConviteFesta/main/paleta de cores rhuana.jpeg" class="botao">
+        <div class="icone">
+          <span class="material-icons">checkroom</span>
+        </div>
+        Dress code
+      </a>
+
+      <!-- Manual do convidado -->
+      <a href="https://raw.githubusercontent.com/ysmmCF/ConviteFesta/main/Cópia de Rhuana.png" class="botao">
+        <div class="icone">
+          <span class="material-icons">menu_book</span>
+        </div>
+        Manual do convidado
+      </a>
+
+      <!-- Localização -->
+      <a href="https://maps.app.goo.gl/7bjk6MGksNM6erDX8" class="botao">
+        <div class="icone">
+          <span class="material-icons">place</span>
+        </div>
+        Localização
+      </a>
+
+    </div>
+
+  </div>
+</div>
+
+<script>
+// Data alvo
+const targetDate = new Date("May 28, 2026 19:00:00").getTime();
+
+function updateCountdown() {
+  const now = new Date().getTime();
+  const distance = targetDate - now;
+
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000*60*60));
+  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000*60));
+  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  document.getElementById("days").childNodes[0].nodeValue = days.toString().padStart(2,"0");
+  document.getElementById("hours").childNodes[0].nodeValue = hours.toString().padStart(2,"0");
+  document.getElementById("minutes").childNodes[0].nodeValue = minutes.toString().padStart(2,"0");
+  document.getElementById("seconds").childNodes[0].nodeValue = seconds.toString().padStart(2,"0");
+}
+
+setInterval(updateCountdown, 1000);
+updateCountdown();
+</script>
+
+</body>
+</html>
