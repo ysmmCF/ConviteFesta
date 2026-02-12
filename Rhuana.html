@@ -3,24 +3,19 @@
 <head>
 <meta charset="UTF-8">
 
-<title>Convite Vídeo</title>
+<!-- Título -->
+<title>Convite</title>
+
+<!-- Viewport mobile -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- Fonte Amatic SC -->
-<link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap" rel="stylesheet">
-
-<!-- Material Icons -->
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
 <style>
-/* ================= RESET ================= */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* ================= BODY ================= */
 body {
   background: black;
   height: 100vh;
@@ -31,7 +26,6 @@ body {
   position: relative;
 }
 
-/* ================= CONTAINER DO VÍDEO ================= */
 .video-container {
   max-width: 100vw;
   max-height: 100vh;
@@ -43,58 +37,7 @@ video {
   max-width: 100vw;
   max-height: 100vh;
   display: block;
-}
-
-/* ================= TEXTO INFERIOR ================= */
-#hintText {
-  position: fixed;
-  bottom: 30px;
-  width: 100%;
-  text-align: center;
-  font-family: 'Amatic SC', cursive;
-  font-size: 34px;
-  color: white;
-  letter-spacing: 2px;
-  z-index: 15;
-  pointer-events: none;
-}
-
-/* ================= ÍCONE DE TOQUE ================= */
-#finger {
-  position: fixed;
-  top: 60%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 72px;
-  color: white;
-  opacity: 0;
-  z-index: 15;
-  pointer-events: none;
-  animation: clickHint 3s infinite;
-  display: none;
-}
-
-@keyframes clickHint {
-  0% { opacity: 0; transform: translate(-50%, -50%) scale(1); }
-  20% { opacity: 0.6; }
-  40% { transform: translate(-50%, -50%) scale(0.85); }
-  60% { opacity: 0; }
-  100% { opacity: 0; transform: translate(-50%, -50%) scale(1); }
-}
-
-/* ================= FADE PRETO ================= */
-#fadeBlack {
-  position: fixed;
-  inset: 0;
-  background: black;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 1.8s ease-in;
-  z-index: 20;
-}
-
-#fadeBlack.active {
-  opacity: 1;
+  cursor: pointer; /* mostra que é clicável */
 }
 </style>
 </head>
@@ -102,41 +45,15 @@ video {
 <body>
 
 <div class="video-container">
-  <video autoplay muted loop playsinline>
+  <video autoplay muted loop playsinline id="video">
     <source src="https://raw.githubusercontent.com/ysmmCF/ConviteFesta/main/lv_0_20260211140611.mp4" type="video/mp4">
   </video>
 </div>
 
-<div id="finger" class="material-icons">touch_app</div>
-<div id="hintText">clique para continuar</div>
-<div id="fadeBlack"></div>
-
 <script>
-let ativado = false;
-
-setTimeout(() => {
-  document.getElementById("finger").style.display = "block";
-}, 3000);
-
-/* Clique em qualquer lugar */
-document.addEventListener("click", () => {
-  if (!ativado) {
-    ativado = true;
-
-    // Ativa fade
-    const fade = document.getElementById("fadeBlack");
-    fade.classList.add("active");
-
-    // Esconde elementos
-    document.getElementById("hintText").style.display = "none";
-    document.getElementById("finger").style.display = "none";
-
-    // Após o fade (1.8s), redireciona para o convite
-    setTimeout(() => {
-      window.location.href = "https://raw.githubusercontent.com/ysmmCF/ConviteFesta/main/convite.html"; 
-      // <<< TROQUE ESTE LINK PELO HTML DO CONVITE HOSPEDADO
-    }, 1800);
-  }
+// Redireciona para o convite ao clicar no vídeo
+document.getElementById("video").addEventListener("click", () => {
+  window.location.href = "https://ysmmCF.github.io/ConviteFesta/convite.html";
 });
 </script>
 
