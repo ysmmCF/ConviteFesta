@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+
+<title>Convite</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Fonte Amatic SC -->
+<link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap" rel="stylesheet">
+
+<!-- Material Icons -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: black;
+  overflow-y: auto;
+}
+
+#convite {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+#conteudo {
+  width: 100%;
+  position: relative;
+}
+
+#conteudo img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Área dos botões */
+#botoes {
+  position: absolute;
+  top: 76%;
+  left: 62%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  width: 85%;
+  max-width: 340px;
+}
+
+/* Botão */
+.botao {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+  color: white;
+  font-family: 'Amatic SC', cursive;
+  font-size: 26px;
+  letter-spacing: 1px;
+}
+
+/* Bolinha azul */
+.icone {
+  width: 57px;
+  height: 57px;
+  background: #719aff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Ícone branco */
+.icone .material-icons {
+  color: white;
+  font-size: 28px;
+}
+
+/* Vídeo posicionado */
+#video-container {
+  position: absolute;
+  top: 46%;      /* ajuste vertical */
+  left: 51%;
+  transform: translateX(-50%);
+  width: 289px;  /* largura menor */
+  cursor: pointer;
+  z-index: 10;
+}
+
+#video-container video {
+  width: 100%;
+  display: block;
+  border-radius: 12px;
+  background: transparent; /* sem sombra */
+}
+</style>
+</head>
+
+<body>
+
+<div id="convite">
+  <div id="conteudo">
+
+    <!-- Fundo -->
+    <img 
+      src="https://raw.githubusercontent.com/ysmmCF/ConviteFesta/main/C%C3%B3pia%20de%20Rhuana_20260212_034823_0000.png"
+      alt="Convite Rhuana"
+    >
+
+    <!-- Vídeo -->
+    <div id="video-container">
+      <video id="video" preload="metadata">
+        <source src="https://raw.githubusercontent.com/ysmmCF/ConviteFesta/main/lv_0_20260212034450.mp4" type="video/mp4">
+        Seu navegador não suporta vídeo.
+      </video>
+    </div>
+
+    <!-- Botões -->
+    <div id="botoes">
+
+      <a href="https://raw.githubusercontent.com/ysmmCF/ConviteFesta/main/sugest%C3%A3o%20de%20presente%20rhuana.jpeg" class="botao">
+        <div class="icone">
+          <span class="material-icons">card_giftcard</span>
+        </div>
+        Sugestões de presentes
+      </a>
+
+      <a href="https://raw.githubusercontent.com/ysmmCF/ConviteFesta/main/paleta%20de%20cores%20rhuana.jpeg" class="botao">
+        <div class="icone">
+          <span class="material-icons">checkroom</span>
+        </div>
+        Dress code
+      </a>
+
+      <a href="https://raw.githubusercontent.com/ysmmCF/ConviteFesta/main/C%C3%B3pia%20de%20Rhuana.png" class="botao">
+        <div class="icone">
+          <span class="material-icons">menu_book</span>
+        </div>
+        Manual do convidado
+      </a>
+
+      <a href="https://maps.app.goo.gl/7bjk6MGksNM6erDX8" class="botao">
+        <div class="icone">
+          <span class="material-icons">place</span>
+        </div>
+        Localização
+      </a>
+
+    </div>
+
+  </div>
+</div>
+
+<script>
+const video = document.getElementById("video");
+
+// Mostra o primeiro frame antes de clicar
+video.pause();
+video.currentTime = 0;
+
+// Tocar somente quando clicar
+video.addEventListener("click", () => {
+  if (video.paused) {
+    video.play();
+  }
+});
+
+// Pausa no segundo 8
+video.addEventListener("timeupdate", () => {
+  if (video.currentTime >= 8) {
+    video.pause();
+  }
+});
+</script>
+
+</body>
+</html>
