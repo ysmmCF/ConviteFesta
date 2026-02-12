@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 
-<!-- Título -->
 <title>Convite</title>
-
-<!-- Viewport mobile -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Fonte Amatic SC -->
+<link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap" rel="stylesheet">
 
 <style>
 * {
@@ -37,7 +37,21 @@ video {
   max-width: 100vw;
   max-height: 100vh;
   display: block;
-  cursor: pointer; /* mostra que é clicável */
+  cursor: pointer;
+}
+
+/* TEXTO TOQUE PARA CONTINUAR */
+#hintText {
+  position: fixed;
+  top: 98%; /* altura 98% da parte de baixo é 2% do topo */
+  width: 100%;
+  text-align: center;
+  font-family: 'Amatic SC', cursive;
+  font-size: 40px;
+  color: white;
+  letter-spacing: 2px;
+  z-index: 15;
+  pointer-events: none;
 }
 </style>
 </head>
@@ -50,8 +64,11 @@ video {
   </video>
 </div>
 
+<!-- TEXTO TOQUE -->
+<div id="hintText">toque para continuar</div>
+
 <script>
-// Redireciona para o convite ao clicar no vídeo
+// Clique no vídeo leva para o convite
 document.getElementById("video").addEventListener("click", () => {
   window.location.href = "https://ysmmCF.github.io/ConviteFesta/convite.html";
 });
