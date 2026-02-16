@@ -5,166 +5,169 @@
 <title>Convite</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- Fonte -->
 <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap" rel="stylesheet">
-
-<!-- Material Icons -->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
 }
 
-body {
-  background: black;
-  font-family: 'Amatic SC', cursive;
+body{
+  background:black;
+  font-family:'Amatic SC',cursive;
 }
 
 /* ===== CONVITE ===== */
-#convite {
-  width: 100%;
-  display: flex;
-  justify-content: center;
+#convite{
+  width:100%;
+  display:flex;
+  justify-content:center;
 }
 
-#conteudo {
-  width: 100%;
-  position: relative;
+#conteudo{
+  width:100%;
+  position:relative;
 }
 
-#conteudo img {
-  width: 100%;
-  display: block;
+#conteudo img{
+  width:100%;
+  display:block;
 }
 
-/* ===== CONTAGEM ===== */
-#contador {
-  position: absolute;
-  top: 83%;
-  width: 100%;
-  text-align: center;
-  color: white;
-  animation: surgir 1.5s ease forwards;
+/* ===== CONTAGEM (MENOR E MAIS ELEGANTE) ===== */
+#contador{
+  position:absolute;
+  top:80%;
+  width:100%;
+  text-align:center;
+  color:white;
+  animation:surgir 1.5s ease forwards;
 }
 
-#contador h1 {
-  font-size: 56px;
-  margin-bottom: 12px;
+#contador h1{
+  font-size:42px;
+  margin-bottom:8px;
 }
 
-#tempo {
-  display: flex;
-  justify-content: center;
-  gap: 28px;
-  font-size: 42px;
+#tempo{
+  display:flex;
+  justify-content:center;
+  gap:18px;
+  font-size:26px;
 }
 
-.bloco span {
-  display: block;
-  font-size: 64px;
+.bloco span{
+  display:block;
+  font-size:42px;
 }
 
-@keyframes surgir {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
+@keyframes surgir{
+  from{
+    opacity:0;
+    transform:translateY(20px);
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+  to{
+    opacity:1;
+    transform:translateY(0);
   }
 }
 
 /* ===== BOTÕES ===== */
-#botoes {
-  position: absolute;
-  top: 64%;
-  left: 62%;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  gap: 22px;
-  width: 85%;
-  max-width: 340px;
-  z-index: 15;
+#botoes{
+  position:absolute;
+  top:64%;
+  left:62%;
+  transform:translateX(-50%);
+  display:flex;
+  flex-direction:column;
+  gap:22px;
+  width:85%;
+  max-width:340px;
+  z-index:15;
 }
 
-.botao {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  text-decoration: none;
-  color: white;
-  font-size: 28px;
+.botao{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  text-decoration:none;
+  color:white;
+  font-size:28px;
 }
 
-.icone {
-  width: 60px;
-  height: 60px;
-  background: #719aff;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.icone{
+  width:60px;
+  height:60px;
+  background:#719aff;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
 
-.material-icons {
-  font-size: 34px;
-  color: white;
+.material-icons{
+  font-size:34px;
+  color:white;
 }
 
 /* ===== POP-UP ===== */
-#popup {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.6);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  opacity: 0;
-  pointer-events: none;
-  transition: 0.4s;
-  z-index: 30;
+#popup{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.6);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity 0.4s ease;
+  z-index:30;
 }
 
-#popup.active {
-  opacity: 1;
-  pointer-events: all;
+#popup.active{
+  opacity:1;
+  pointer-events:all;
 }
 
-#popup-content {
-  background: #223052;
-  color: white;
-  padding: 65px 55px;
-  border-radius: 32px;
-  text-align: center;
-  max-width: 560px;
-  width: 92%;
-  font-size: 40px;
-  line-height: 1.4;
-  position: relative;
+#popup-content{
+  background:#223052;
+  color:white;
+  padding:55px 45px;
+  border-radius:28px;
+  text-align:center;
+  max-width:520px;
+  width:90%;
+  font-size:32px;
+  line-height:1.4;
+  position:relative;
+  transform:scale(0.85);
+  transition:transform 0.4s ease;
 }
 
-.confirmacao {
-  margin-top: 25px;
-  font-size: 36px;
+#popup.active #popup-content{
+  transform:scale(1);
 }
 
-#popup-close {
-  position: absolute;
-  top: 6px;
-  right: 14px;
-  font-size: 72px;
-  cursor: pointer;
-  line-height: 1;
+.confirmacao{
+  margin-top:20px;
+  font-size:28px;
+}
+
+#popup-close{
+  position:absolute;
+  top:5px;
+  right:12px;
+  font-size:60px;
+  cursor:pointer;
+  line-height:1;
 }
 
 /* ===== MÚSICA ===== */
-audio {
-  display: none;
+audio{
+  display:none;
 }
 </style>
 </head>
@@ -191,7 +194,6 @@ audio {
     <!-- BOTÕES -->
     <div id="botoes">
 
-      <!-- LINK ATUALIZADO AQUI -->
       <a href="https://raw.githubusercontent.com/ysmmCF/ConviteFesta/main/Rhuana_20260216_143922_0000.png" class="botao">
         <div class="icone"><span class="material-icons">card_giftcard</span></div>
         Sugestões de presentes
@@ -215,6 +217,53 @@ audio {
     </div>
   </div>
 </div>
+
+<!-- POP-UP -->
+<div id="popup">
+  <div id="popup-content">
+    <div id="popup-close">&times;</div>
+    Convite interativo 💙<br>
+    Clique nos botões para explorar!
+    <div class="confirmacao">
+      Confirme presença até <strong>15/05</strong>
+    </div>
+  </div>
+</div>
+
+<!-- MÚSICA -->
+<audio id="music" loop>
+  <source src="https://raw.githubusercontent.com/ysmmCF/ConviteFesta/main/frozen%20m%C3%BAsica.mp4" type="audio/mp4">
+</audio>
+
+<script>
+const popup = document.getElementById("popup");
+const close = document.getElementById("popup-close");
+const music = document.getElementById("music");
+
+setTimeout(()=>{
+  popup.classList.add("active");
+},1200);
+
+close.addEventListener("click",()=>{
+  popup.classList.remove("active");
+  music.play();
+});
+
+/* CONTAGEM */
+const dataEvento = new Date("2026-05-28T19:00:00").getTime();
+
+setInterval(()=>{
+  const agora = new Date().getTime();
+  const diff = dataEvento - agora;
+
+  if(diff <= 0) return;
+
+  document.getElementById("dias").innerText = Math.floor(diff/(1000*60*60*24));
+  document.getElementById("horas").innerText = Math.floor((diff/(1000*60*60))%24);
+  document.getElementById("minutos").innerText = Math.floor((diff/(1000*60))%60);
+  document.getElementById("segundos").innerText = Math.floor((diff/1000)%60);
+},1000);
+</script>
 
 </body>
 </html>
