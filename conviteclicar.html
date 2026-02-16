@@ -191,7 +191,8 @@ audio {
     <!-- BOTÕES -->
     <div id="botoes">
 
-      <a href="https://raw.githubusercontent.com/ysmmCF/ConviteFesta/main/sugest%C3%A3o%20de%20presente%20rhuana.jpeg" class="botao">
+      <!-- LINK ATUALIZADO AQUI -->
+      <a href="https://raw.githubusercontent.com/ysmmCF/ConviteFesta/main/Rhuana_20260216_143922_0000.png" class="botao">
         <div class="icone"><span class="material-icons">card_giftcard</span></div>
         Sugestões de presentes
       </a>
@@ -215,54 +216,5 @@ audio {
   </div>
 </div>
 
-<!-- POP-UP -->
-<div id="popup">
-  <div id="popup-content">
-    <div id="popup-close">&times;</div>
-    Convite interativo,<br>
-    fique à vontade para explorar!
-    <div class="confirmacao">
-      Confirme a presença até <strong>15/05</strong>
-    </div>
-  </div>
-</div>
-
-<!-- MÚSICA -->
-<audio id="music" loop>
-  <source src="https://raw.githubusercontent.com/ysmmCF/ConviteFesta/main/frozen%20m%C3%BAsica.mp4" type="audio/mp4">
-</audio>
-
-<script>
-const popup = document.getElementById("popup");
-const close = document.getElementById("popup-close");
-const music = document.getElementById("music");
-
-// abrir popup
-setTimeout(() => {
-  popup.classList.add("active");
-}, 1200);
-
-// fechar popup + tocar música
-close.addEventListener("click", () => {
-  popup.classList.remove("active");
-  music.play();
-});
-
-// CONTAGEM REGRESSIVA
-const dataEvento = new Date("2026-05-28T19:00:00").getTime();
-
-setInterval(() => {
-  const agora = new Date().getTime();
-  const diff = dataEvento - agora;
-
-  if (diff <= 0) return;
-
-  document.getElementById("dias").innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
-  document.getElementById("horas").innerText = Math.floor((diff / (1000 * 60 * 60)) % 24);
-  document.getElementById("minutos").innerText = Math.floor((diff / (1000 * 60)) % 60);
-  document.getElementById("segundos").innerText = Math.floor((diff / 1000) % 60);
-}, 1000);
-</script>
-
 </body>
-        </html>
+</html>
